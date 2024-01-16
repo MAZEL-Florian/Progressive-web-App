@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Generation from './components/Generation';
+import Header from './components/Header';
 
 function App() {
     const [generations, setGenerations] = useState([]);
@@ -16,6 +17,7 @@ function App() {
 
     return (
         <div>
+            <Header />
             {generations.map(generation => (
                 <Generation key={generation.name} generationUrl={generation.url} />
             ))}

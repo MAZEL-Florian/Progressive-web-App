@@ -21,7 +21,6 @@ function Generation({ generationUrl }) {
             rows.push(
                 <div className="row justify-content-center my-3" key={i}>
                     {pokemonList.slice(i, i + 5).map(pokemon => (
-                        // Ajustement de la classe de colonne pour plus d'espacement
                         <div className="col-md-2 mx-2 d-flex align-items-stretch" key={pokemon.name}>
                             <PokemonCard pokemon={pokemon} />
                         </div>
@@ -32,12 +31,18 @@ function Generation({ generationUrl }) {
         return rows;
     };
 
+    const showAllPokemon = () => {
+        setVisible(pokemonList.length);
+    };
+
     return (
         <div className="container mt-4">
             <div className="d-flex flex-column align-items-center border p-3 rounded">
-                {renderPokemonRows()}
+                <div style={{ maxHeight: '500px', overflowY: 'scroll' }}>
+                    {renderPokemonRows()}
+                </div>
                 {visible < pokemonList.length && (
-                    <button className="btn btn-primary mt-3" onClick={() => setVisible(prev => prev + 5)}>Voir plus</button>
+                    <button className="btn btn-primary mt-3" onClick={showAllPokemon}>Voir plus</button>
                 )}
             </div>
         </div>
